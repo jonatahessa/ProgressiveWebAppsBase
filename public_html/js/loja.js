@@ -1,6 +1,5 @@
 // cria a aplicação e indica que vamos usar o plugin de rotas
 var app = angular.module('lojaApp', ['ngRoute']);
-
 // configura o plugin de rotas
 app.config(function ($routeProvider) {
     $routeProvider
@@ -64,3 +63,15 @@ app.controller('lojaCtrl', function ($scope, $http, $routeParams) {
         return value.preco >= $scope.min && value.preco <= $scope.max;
     };
 });
+
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register('LOJA-SW.js')
+                .then(function (registration) {
+                    console.log('Service Worker OK!');
+                }, function (err) {
+                    console.log('Service Worker NOT OK', err);
+                });
+    });
+}
